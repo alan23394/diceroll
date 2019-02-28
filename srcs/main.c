@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 01:21:46 by alan              #+#    #+#             */
-/*   Updated: 2019/02/28 03:49:05 by alan             ###   ########.fr       */
+/*   Updated: 2019/02/28 03:57:16 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 
 	if (argc != 3)
 	{
-		ft_printfd(2, "usage: diceroll [number of die] [how many sides]\n");
+		ft_printfd(2, "usage: roll [number of die] [how many sides]\n");
 		return (1);
 	}
 	amount = ft_atoi(argv[1]);
