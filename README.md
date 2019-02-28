@@ -1,5 +1,5 @@
 # USAGE
-The nums variable should be an array of less than MAX\_NUMS
+The nums variable should be an array of less than `MAX\_NUMS`
 numbers of type int. It is allocated in the init\_dice function to
 size how\_many, so you just have to fill it.
 The init function will return (0) if you give it a value for
