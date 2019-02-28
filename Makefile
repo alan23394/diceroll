@@ -6,11 +6,11 @@
 #    By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/28 01:07:53 by alan              #+#    #+#              #
-#    Updated: 2019/02/28 01:07:54 by alan             ###   ########.fr        #
+#    Updated: 2019/02/28 02:50:25 by alan             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME :=			diceroll
+NAME :=			roll
 LIB :=			libft/libftprintf.a
 
 C_SRCS :=		$(wildcard ./srcs/*.c)
