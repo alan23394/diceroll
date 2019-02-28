@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 01:21:46 by alan              #+#    #+#             */
-/*   Updated: 2019/02/28 01:30:09 by alan             ###   ########.fr       */
+/*   Updated: 2019/02/28 02:50:07 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		main(int argc, char **argv)
 	int		fd;
 	int		size_read;
 	int		rolls;
+	t_dice	*dice;
 
 	if (argc != 3)
 	{
@@ -29,17 +30,21 @@ int		main(int argc, char **argv)
 	rolls = ft_atoi(argv[1]);
 	if (rolls > MAX_NUMS)
 	{
-		ft_printfd(2, "no more than 10 dice at a time\n");
+		ft_printfd(2, "no more than %d dice at a time\n", MAX_NUMS);
 		return (1);
 	}
+	dice = init_dice(rolls, ft_atoi(argv[2]));
 	fd = open("/dev/random", O_RDONLY);
-	size_read = read(fd, nums, sizeof(unsigned int) * MAX_NUMS);
-	if ((unsigned long)size_read < (sizeof(unsigned int) * MAX_NUMS))
+	size_read = read(fd, dice->nums, sizeof(int) * dice->how_many);
+	if ((unsigned long)size_read < (sizeof(int) * dice->how_many))
 	{
-		ft_printfd(2, "read error, try again later\n");
+		ft_printfd(2, "read error, try again later (%lu/%lu)\n",
+				(unsigned long)size_read, (sizeof(int) * dice->how_many));
 		return (1);
 	}
-	roll_many(rolls, ft_atoi(argv[1]));
+	roll_dice(dice);
+	delete_dice(dice);
 	ft_putchar('\n');
+	close(fd);
 	return (0);
 }
