@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 23:38:55 by alan              #+#    #+#             */
-/*   Updated: 2019/02/28 03:51:20 by alan             ###   ########.fr       */
+/*   Updated: 2019/02/28 12:23:56 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void			diceroll(int how_many, int sides,
 	dice = init_dice(how_many, sides);
 	if (nums_source(dice) == -1)
 	{
+		delete_dice(dice);
 		return ;
 	}
 	roll_dice(dice);
