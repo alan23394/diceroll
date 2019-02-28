@@ -1,4 +1,5 @@
 roll
+libftprintf.a
 tags*
 *.vimsession
 *.o
