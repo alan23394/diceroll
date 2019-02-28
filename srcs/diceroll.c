@@ -6,19 +6,34 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 23:38:55 by alan              #+#    #+#             */
-/*   Updated: 2019/02/28 01:06:30 by alan             ###   ########.fr       */
+/*   Updated: 2019/02/28 01:59:54 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-//#include "diceroll.h"
-#include <unistd.h>
-#include <fcntl.h>
+#include "libft.h"
+#include "diceroll.h"
 
-#define MAX_NUMS (10)
+t_dice	*init_dice()
+{
+	t_dice	*new_dice;
 
-static unsigned int		nums[sizeof(unsigned int) * MAX_NUMS];
-static int				nums_counter = 0;
+	new_dice = (t_dice *)ft_memalloc(sizeof(t_dice));
+	new_dice->nums = (unsigned int)ft_memalloc(sizeof(unsigned int) * MAX_NUMS);
+	new_dice->nums_counter = 0;
+	return (new_dice);
+}
+
+void	delete_dice(t_dice *del)
+{
+	if (del)
+	{
+		if (del->nums)
+		{
+			ft_memdel(del->nums);
+		}
+		ft_memdel(del);
+	}
+}
 
 int		roll(int sides)
 {
