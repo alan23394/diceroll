@@ -1,3 +1,4 @@
 diceroll
-tags
+tags*
+*.vimsession
 *.o
