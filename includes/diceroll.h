@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 00:57:23 by alan              #+#    #+#             */
-/*   Updated: 2019/02/28 01:59:48 by alan             ###   ########.fr       */
+/*   Updated: 2019/02/28 02:39:04 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 **	*   It should NOT be indexed if nums_counter is >= MAX_NUMS!           *
 **	*   Remember to incrememt nums_counter each time you take a number     *
 **	*   from nums, to keep track of how many numbers have been taken.      *
+**	*   Note: this is implemented in the roll function, which returns      *
+**	*   the result of the index.                                           *
 **	*********************************************************************}}}
 */
 
@@ -31,13 +33,16 @@
 
 typedef struct		s_dice
 {
-	unsigned int	*nums;
+	int				*nums;
 	unsigned int	nums_counter;
+	unsigned int	how_many;
+	unsigned int	sides;
 }					t_dice;
 
-t_dice				*init_dice();
+t_dice				*init_dice(unsigned int how_many, unsigned int sides);
 void				delete_dice(t_dice *del);
 
-void				roll_many(int how_many, int sides);
+int					roll(t_dice *dice);
+void				roll_dice(t_dice *dice);
 
 #endif

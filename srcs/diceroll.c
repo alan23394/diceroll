@@ -6,56 +6,68 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 23:38:55 by alan              #+#    #+#             */
-/*   Updated: 2019/02/28 01:59:54 by alan             ###   ########.fr       */
+/*   Updated: 2019/02/28 02:48:29 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 #include "diceroll.h"
 
-t_dice	*init_dice()
+t_dice			*init_dice(unsigned int how_many, unsigned int sides)
 {
 	t_dice	*new_dice;
 
+	if (how_many > MAX_NUMS)
+	{
+		return (0);
+	}
 	new_dice = (t_dice *)ft_memalloc(sizeof(t_dice));
-	new_dice->nums = (unsigned int)ft_memalloc(sizeof(unsigned int) * MAX_NUMS);
+	new_dice->nums = (int *)ft_memalloc(sizeof(int) * how_many);
 	new_dice->nums_counter = 0;
+	new_dice->how_many = how_many;
+	new_dice->sides = sides;
 	return (new_dice);
 }
 
-void	delete_dice(t_dice *del)
+void			delete_dice(t_dice *del)
 {
 	if (del)
 	{
 		if (del->nums)
 		{
-			ft_memdel(del->nums);
+			ft_memdel((void **)&del->nums);
 		}
-		ft_memdel(del);
+		ft_memdel((void **)&del);
 	}
 }
 
-int		roll(int sides)
+int				roll(t_dice *dice)
 {
 	int	roll;
 
-	if (nums_counter >= MAX_NUMS)
+	if (dice->nums_counter >= dice->how_many)
+	{
 		return (-1);
-	roll = ft_abs(nums[nums_counter] % sides);
-	++nums_counter;
+	}
+	roll = ft_abs(dice->nums[dice->nums_counter] % dice->sides) + 1;
+	++(dice->nums_counter);
 	return (roll);
 }
 
-void	roll_many(int how_many, int sides)
+void			roll_dice(t_dice *dice)
 {
-	int	result;
+	unsigned int	i;
+	int				result;
 
-	while (how_many > 0)
+	i = 0;
+	while (i < dice->how_many)
 	{
-		result = roll(sides);
-		ft_putnbr(result);
-		if (how_many > 1)
-			ft_putstr(", ");
-		--how_many;
+		result = roll(dice);
+		if (result == -1)
+		{
+			return ;
+		}
+		ft_printf("%u%s", result, ((i < (dice->how_many - 1)) ? ", " : ""));
+		++i;
 	}
 }
