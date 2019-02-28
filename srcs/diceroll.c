@@ -6,7 +6,7 @@
 /*   By: alan <alanbarnett328@gmail.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/27 23:38:55 by alan              #+#    #+#             */
-/*   Updated: 2019/02/28 02:48:29 by alan             ###   ########.fr       */
+/*   Updated: 2019/02/28 03:51:20 by alan             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,19 @@ void			roll_dice(t_dice *dice)
 		ft_printf("%u%s", result, ((i < (dice->how_many - 1)) ? ", " : ""));
 		++i;
 	}
+	ft_putchar('\n');
+}
+
+void			diceroll(int how_many, int sides,
+					int (*nums_source)(t_dice *dice))
+{
+	t_dice	*dice;
+
+	dice = init_dice(how_many, sides);
+	if (nums_source(dice) == -1)
+	{
+		return ;
+	}
+	roll_dice(dice);
+	delete_dice(dice);
 }
